@@ -10,7 +10,7 @@ export default function Movies() {
   const [results, setResults] = useState([]);
   const [totalPage, setTotalPage] = useState('');
   const [error, setError] = useState(null);
-  const { pathname } = useLocation();
+  const location = useLocation();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const page = 1;
@@ -38,21 +38,23 @@ export default function Movies() {
     setSearchParams({ query: query, page: String(Number(currentPage) + 1) });
   };
 
-  return (
-    <>
-      <Form onSubmit={onSubmit} />
-
-      {error ? (
+  if (error) {
+    return (
+      <>
+        <Form onSubmit={onSubmit} />
         <Text weight={600} size={32} color="red">
           Error: {error}
         </Text>
-      ) : (
-        <>
-          <Gallery filmTrends={results} to={`${pathname}/`} />
+      </>
+    );
+  }
 
-          {page < totalPage && <button onClick={onClick}> Load more</button>}
-        </>
-      )}
+  return (
+    <>
+      <Form onSubmit={onSubmit} />
+      <Gallery filmTrends={results} to={'/movies/'} location={location} />
+
+      {page < totalPage && <button onClick={onClick}> Load more</button>}
     </>
   );
 }

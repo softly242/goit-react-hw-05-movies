@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { SearchForm, Input, Button, Label } from './Form.styled';
+import { Form, Input, Button, Label } from './Form.styled';
 
-export default function Form({ onSubmit }) {
+export default function SearchForm ({ onSubmit }) {
   const [query, setQuery] = useState('');
 
   const handleChange = event => {
@@ -22,8 +22,8 @@ export default function Form({ onSubmit }) {
   };
 
   return (
-    <SearchForm >
-      <Button type="submit" onClick={handleSumbit}>
+    <Form onSubmit={handleSumbit}>
+      <Button type="submit" >
         <Label>Search</Label>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +44,10 @@ export default function Form({ onSubmit }) {
         autoFocus
         placeholder="Search films"
       />
-    </SearchForm>
+    </Form>
   );
 }
 
-Form.propTypes = {
+SearchForm.propTypes = {
   onSubmit: PropTypes.func,
 };

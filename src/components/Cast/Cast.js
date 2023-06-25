@@ -28,11 +28,12 @@ export default function Cast() {
       <div>
         {casts.map(({ profile_path, original_name, id, character }) => (
           <Card maw={300} shadow="sm" padding="lg" radius="md" withBorder key={id}>
-            <Card.Section>
+            <Card.Section >
               <Image
                 src={`https://image.tmdb.org/t/p/w200${profile_path}`}
                 w={'100%'}
                 withPlaceholder
+                height={260}
               />
             </Card.Section>
 
